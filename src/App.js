@@ -18,7 +18,22 @@ function App() {
     setDisplay(display + " " + operator + " ");
   };
 
-  const handleEqual = () => {};
+  const handleEqual = () => {
+    setDisplay(eval(display));
+  };
+
+  const handleDecimal = () => {
+    const array = display.split(" ");
+    const lastElement = array[array.length - 1];
+
+    if (!lastElement.includes(".")) {
+      setDisplay(display + ".");
+    }
+  };
+
+  const handleClear = () => {
+    setDisplay("0");
+  };
 
   return (
     <div className="App">
@@ -26,7 +41,7 @@ function App() {
         <div id="display" className="row">
           {display}
         </div>
-        <div id="clear" className="row">
+        <div id="clear" className="row" onClick={handleClear}>
           AC
         </div>
         <div id="seven" onClick={handleNumber}>
@@ -68,7 +83,9 @@ function App() {
         <div id="zero" onClick={handleNumber}>
           0
         </div>
-        <div id="decimal">.</div>
+        <div id="decimal" onClick={handleDecimal}>
+          .
+        </div>
         <div id="equals" onClick={handleEqual}>
           =
         </div>
